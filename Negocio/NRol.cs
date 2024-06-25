@@ -28,5 +28,14 @@ namespace Negocio
 
             return result;
         }
+
+        public string RegistrarRolUsuario()
+        {
+
+            //Registrar de la capa de datos del usuario
+            //Registrar de la capa de datos del rol
+
+            return "";
+        }
     }
 }

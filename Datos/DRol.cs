@@ -14,9 +14,9 @@ namespace Datos
 
         public void Registrar(string Nombre, bool Activo)
         {
+
             using (var connection = new SqlConnection(Conexion.cadena))
             {
-
                 connection.Open();
                 SqlCommand command = new SqlCommand("USP_InsertRole", connection);
                 command.CommandType = CommandType.StoredProcedure;
@@ -34,7 +34,12 @@ namespace Datos
 
             }
         }
-
+        public void Actualizar() { }
+        public void Eliminar() { }
+        public Role BuscarPorId(int Id)
+        {
+            return null;
+        }
         public List<Role> Listar(string Nombre)
         {
             List<Role> roles = new List<Role>();
