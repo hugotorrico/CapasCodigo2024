@@ -10,16 +10,13 @@ namespace Negocio
 {
     public class NRol
     {
+        DRol datos = new DRol();
 
         public string Registrar(string Nombre)
         {
-            string result = string.Empty;
+            string result = string.Empty;         
 
-            DRol datos = new DRol();
-
-            //Buscar si existe otro rol igual
             List<Role> roles = datos.Listar(Nombre);
-
             if (roles.Count==0)            
                 datos.Registrar(Nombre, true);            
             else            
@@ -29,13 +26,12 @@ namespace Negocio
             return result;
         }
 
-        public string RegistrarRolUsuario()
+        public List<Role> Listar(string Nombre)
         {
-
-            //Registrar de la capa de datos del usuario
-            //Registrar de la capa de datos del rol
-
-            return "";
+            List<Role> result = new List<Role>();
+           
+            result = datos.Listar(Nombre);
+            return result;
         }
     }
 }
