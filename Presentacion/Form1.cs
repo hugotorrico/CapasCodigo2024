@@ -11,14 +11,19 @@ namespace Presentacion
         }
 
         private void button1_Click(object sender, EventArgs e)
-        {
-            //Registrar el rol!!!!
+        {       
 
             try
             {
                 NRol negocio = new NRol();
-                negocio.Registrar(txtRol.Text, true);
-                MessageBox.Show("Registro Exitoso");
+                string mensaje = string.Empty;                
+                mensaje= negocio.Registrar(txtRol.Text);
+
+                if (mensaje==string.Empty)
+                    MessageBox.Show("Registro Exitoso");
+                else
+                    MessageBox.Show(mensaje);
+
             }
             catch (Exception)
             {

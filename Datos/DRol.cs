@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Entidad;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -32,6 +33,42 @@ namespace Datos
                 command.ExecuteNonQuery();
 
             }
+        }
+
+        public List<Role> Listar(string Nombre)
+        {
+            List<Role> roles = new List<Role>();
+
+            using (var connection = new SqlConnection(Conexion.cadena))
+            {
+                //Usar el procedimiento almacenado
+                SqlCommand cmd = new SqlCommand("USP_GetRoles", connection);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+
+                //Enviar los parámetros
+                SqlParameter parameter = new SqlParameter("@RoleName", SqlDbType.VarChar, 50);
+                parameter.Value = Nombre;
+                cmd.Parameters.Add(parameter);
+
+                connection.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                //Recorrer el data reader
+                while (reader.Read())
+                {
+
+                    int RoleID = reader["RoleID"] != DBNull.Value ? Convert.ToInt32(reader["RoleID"]) : 0;
+                    string RoleName = reader["RoleName"] != DBNull.Value ? Convert.ToString(reader["RoleName"]) : "";
+
+                    roles.Add(new Role { RoleId = RoleID, RoleName = RoleName });
+                   
+
+                }
+                reader.Close();
+            }
+            return roles;
+
         }
 
     }

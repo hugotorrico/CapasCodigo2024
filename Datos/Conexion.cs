@@ -9,6 +9,8 @@ namespace Datos
     public static class Conexion
     {
         public static string cadena = "Server=DESKTOP-BCQFL9J\\SQLEXPRESS; " +
-                        "Initial Catalog=WICMonitoriaDBDev; Integrated Security=True;trustservercertificate=True";
+                                      "Initial Catalog=WICMonitoriaDBDev; " +
+                                      "User Id=userMonitoria; Pwd=123456;" +                                    
+                                      "trustservercertificate=True";
     }
 }
